@@ -1,3 +1,7 @@
+"""
+Unit tests for the Attendance class.
+"""
+
 import pytest
 from unittest.mock import patch
 from git_project.methods.attendance import Attendance

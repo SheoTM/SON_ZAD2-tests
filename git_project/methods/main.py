@@ -1,3 +1,7 @@
+"""
+Main script for running the application.
+"""
+
 from git_project.methods.import_students import ImportStudents
 
 path = "../lists/student_list.csv"

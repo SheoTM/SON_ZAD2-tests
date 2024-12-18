@@ -1,5 +1,8 @@
-from git_project.methods.export_students import ExportStudents
+"""
+Module for modifying student records and exporting data to CSV and TXT files.
+"""
 
+from git_project.methods.export_students import ExportStudents
 import os
 
 

@@ -2,9 +2,11 @@
 
 import os
 
+
 """
 Module for managing student attendance.
 """
+
 class Attendance:
     def __init__(self):
         self.presence = {}

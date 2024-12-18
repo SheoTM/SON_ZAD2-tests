@@ -1,3 +1,7 @@
+"""
+Unit tests for the add_student module.
+"""
+
 import pytest
 
 

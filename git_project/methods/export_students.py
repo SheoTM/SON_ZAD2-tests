@@ -1,3 +1,7 @@
+"""
+Module for exporting student data to CSV and TXT files.
+"""
+
 class ExportStudents:
     @staticmethod
     def csv(path, list):

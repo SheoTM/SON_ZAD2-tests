@@ -1,3 +1,7 @@
+"""
+Module for importing student data from CSV and TXT files.
+"""
+
 class ImportStudents:
     @staticmethod
     def csv(path, student_details_structure):
