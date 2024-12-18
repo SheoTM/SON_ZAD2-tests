@@ -2,7 +2,7 @@
 Module for exporting student data to CSV and TXT files.
 """
 # TODO: Clean up this code because, seriously, it's getting out of hand
-# Issue URL: https://github.com/SheoTM/SON_ZAD2-tests/issues/2
+
 class ExportStudents:
     @staticmethod
     def csv(path, list):

@@ -2,7 +2,6 @@
 Main script for running the application.
 """
 # TODO: Finish main but I'll probably never actually do it
-# Issue URL: https://github.com/SheoTM/SON_ZAD2-tests/issues/3
 
 from git_project.methods.import_students import ImportStudents
 
