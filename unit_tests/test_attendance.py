@@ -1,11 +1,19 @@
-import pytest
+"""
+Unit tests for the Attendance class.
+"""
+
 from unittest.mock import patch
-from GitProject.methods.attendance import Attendance
+from git_project.methods.attendance import Attendance
 
 class TestAttendance:
+    """
+    Tests for managing attendance functionalities.
+    """
 
     def test_check_attendance_for_all(self):
-        # Given
+        """
+        Tests checking attendance for all students.
+        """
         attendance = Attendance()
         date = "2020-12-12"
         students = [
@@ -13,70 +21,55 @@ class TestAttendance:
             {"Name": "Karol", "Surname": "Kredka", "ID": "2"},
         ]
 
-        # Mocking input to simulate "1" for Grzegorz and "0" for Karol
         with patch("builtins.input", side_effect=["1", "0"]):
             attendance.check_attendance_for_all(date, students)
 
-        # Then
-        assert attendance.presence[date]["Grzegorz Boczek"] == True
-        assert attendance.presence[date]["Karol Kredka"] == False
+        assert attendance.presence[date]["Grzegorz Boczek"] is True
+        assert attendance.presence[date]["Karol Kredka"] is False
 
     def test_download_attendance(self):
-        # Given
+        """
+        Tests downloading attendance for a specific date.
+        """
         attendance = Attendance()
         date = "2020-12-12"
-        attendance.presence = {
-            date: {
-                "Grzegorz Boczek": True,
-                "Karol Kredka": False
-            }
-        }
+        attendance.presence = {date: {"Grzegorz Boczek": True, "Karol Kredka": False}}
 
-        # When
         with patch("builtins.print") as mocked_print:
             attendance.download_attendance(date)
 
-        # Then
-        mocked_print.expected_output(f"Attendance for {date}:")
-        mocked_print.expected_output("Grzegorz Boczek: present")
-        mocked_print.expected_output("Karol Kredka: absent")
+        mocked_print.assert_any_call(f"Attendance for {date}:")
+        mocked_print.assert_any_call("Grzegorz Boczek: present")
+        mocked_print.assert_any_call("Karol Kredka: absent")
 
     def test_modify_attendance(self):
-        # Given
+        """
+        Tests modifying attendance for a specific student on a specific date.
+        """
         attendance = Attendance()
         date = "2020-12-12"
         student_name = "Grzegorz Boczek"
-        attendance.presence = {
-            date: {
-                student_name: False,
-                "Karol Kredka": False
-            }
-        }
+        attendance.presence = {date: {student_name: False, "Karol Kredka": False}}
 
-        # Mocking input to simulate "1" for Grzegorz
         with patch("builtins.input", return_value="1"):
             with patch("builtins.print") as mocked_print:
                 attendance.modify_attendance(date, student_name)
 
-        # Then
-        assert attendance.presence[date][student_name] == True
-        mocked_print.expected_output(f"Attendance for student {student_name} on {date} has been updated to present.")
+        assert attendance.presence[date][student_name] is True
+        mocked_print.assert_any_call(
+            f"Attendance for student {student_name} on {date} has been updated to present."
+        )
 
     def test_clear_attendance(self):
-        # Given
+        """
+        Tests clearing attendance data for a specific date.
+        """
         attendance = Attendance()
         date = "2020-12-12"
-        attendance.presence = {
-            date: {
-                "Grzegorz Boczek": True,
-                "Karol Kredka": False
-            }
-        }
+        attendance.presence = {date: {"Grzegorz Boczek": True, "Karol Kredka": False}}
 
-        # When
         with patch("builtins.print") as mocked_print:
             attendance.clear_attendance(date)
 
-        # Then
         assert date not in attendance.presence
         mocked_print.assert_any_call(f"Attendance data for {date} has been removed.")
