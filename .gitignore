@@ -1,0 +1,12 @@
+# Ignore Python bytecode files
+*.pyc
+
+# Ignore __pycache__ directories
+__pycache__/
+
+# Ignore IDE settings
+.idea/
+*.iml
+
+# Ignore generated files
+*.log
