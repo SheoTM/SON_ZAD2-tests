@@ -1,37 +1,45 @@
-"""
-Unit tests for Import and Export functionalities.
-"""
+import pytest
+import os
 
-from unittest.mock import mock_open, patch
 from git_project.methods.import_students import ImportStudents
 
-class TestImportExport:
-    """
-    Tests for importing and exporting student data.
-    """
 
-    def test_import_students_csv(self):
-        """
-        Tests importing students from a CSV file.
-        """
-        mock_csv_data = "Name;Surname;ID\nGrzegorz;Boczek;1\nKarol;Kredka;2"
-        with patch("builtins.open", mock_open(read_data=mock_csv_data)):
-            result = ImportStudents.csv("mock_path.csv", ["Name", "Surname", "ID"])
-            expected = [
-                {"Name": "Grzegorz", "Surname": "Boczek", "ID": "1"},
-                {"Name": "Karol", "Surname": "Kredka", "ID": "2"},
-            ]
-            assert result == expected
+class TestImportStudents:
 
-    def test_import_students_txt(self):
-        """
-        Tests importing students from a TXT file.
-        """
-        mock_txt_data = "Grzegorz Boczek - 1\nKarol Kredka - 2"
-        with patch("builtins.open", mock_open(read_data=mock_txt_data)):
-            result = ImportStudents.txt("mock_path.txt", ["Name", "Surname", "ID"])
-            expected = [
-                {"Name": "Grzegorz", "Surname": "Boczek", "ID": "1"},
-                {"Name": "Karol", "Surname": "Kredka", "ID": "2"},
-            ]
-            assert result == expected
+    def test_csv_import(self):
+        # Given
+        path = "test_students_import.csv"
+        student_details_structure = ["Name", "Surname", "ID"]
+        file_content = """Anna;Nowak;ABC45\nGrzegorz;Boczek;XYZ78"""
+        with open(path, "w") as file:
+            file.write(file_content)
+        want = [
+            {"Name": "Anna", "Surname": "Nowak", "ID": "ABC45"},
+            {"Name": "Grzegorz", "Surname": "Boczek", "ID": "XYZ78"},
+        ]
+
+        # When
+        got = ImportStudents.csv(path, student_details_structure)
+
+        # Then
+        assert want == got
+        os.remove(path)
+
+    def test_txt_import(self):
+        # Given
+        path = "test_students_import.txt"
+        student_details_structure = ["Name", "Surname", "ID"]
+        file_content = """Anna Nowak ABC45\nGrzegorz Boczek XYZ78"""
+        with open(path, "w") as file:
+            file.write(file_content)
+        want = [
+            {"Name": "Anna", "Surname": "Nowak", "ID": "ABC45"},
+            {"Name": "Grzegorz", "Surname": "Boczek", "ID": "XYZ78"},
+        ]
+
+        # When
+        got = ImportStudents.txt(path, student_details_structure)
+
+        # Then
+        assert want == got
+        os.remove(path)

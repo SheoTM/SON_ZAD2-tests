@@ -1,55 +1,40 @@
-"""
-Module for importing student data from CSV and TXT files.
-"""
-
 class ImportStudents:
-    """
-    Handles importing student data from CSV and TXT files.
-    """
-
     @staticmethod
     def csv(path, student_details_structure):
-        """
-        Imports student data from a CSV file.
-        """
         students = []
 
-        with open(path, "r", encoding="utf-8") as file:
-            lines = file.readlines()
+        file = open(path, "r")
 
-        for line in lines[1:]:  # Pomijamy pierwszą linię z nagłówkami
+        for line in file:
             line = line.rstrip()
+
+            student_details_dict = {}
+
             student_details = line.split(";")
-            student_details_dict = dict(zip(student_details_structure, student_details))
+
+            for i in range(len(student_details_structure)):
+                student_details_dict[student_details_structure[i]] = student_details[i]
+
             students.append(student_details_dict)
 
         return students
 
     @staticmethod
     def txt(path, student_details_structure):
-        """
-        Imports student data from a TXT file.
-
-        Args:
-            path (str): Path to the TXT file.
-            student_details_structure (list): List defining the structure of student details.
-
-        Returns:
-            list: List of student dictionaries.
-        """
         students = []
 
-        with open(path, "r", encoding="utf-8") as file:
-            for line in file:
-                line = line.rstrip()
-                student_details = [
-                    detail
-                    for part in line.split(" - ")
-                    for detail in part.split(" ")
-                ]
-                student_details_dict = dict(
-                    zip(student_details_structure, student_details)
-                )
-                students.append(student_details_dict)
+        file = open(path, "r")
+
+        for line in file:
+            line = line.rstrip()
+
+            student_details_dict = {}
+
+            student_details = [j for i in line.split(" - ") for j in i.split(" ")]
+
+            for i in range(len(student_details_structure)):
+                student_details_dict[student_details_structure[i]] = student_details[i]
+
+            students.append(student_details_dict)
 
         return students
