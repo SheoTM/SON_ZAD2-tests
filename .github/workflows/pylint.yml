@@ -72,19 +72,16 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v4"
-
       - name: "TODO to Issue"
         uses: "alstr/todo-to-issue-action@v5"
         with:
           INSERT_ISSUE_URLS: "true"
           CLOSE_ISSUES: "true"
           AUTO_ASSIGN: "true"
-
       - name: Set Git user
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Commit and Push Changes
         run: |
           git add -A
@@ -93,3 +90,4 @@ jobs:
             git push origin main
           else
             echo "No changes to commit"
+          fi
