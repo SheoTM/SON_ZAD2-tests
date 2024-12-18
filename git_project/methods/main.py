@@ -1,7 +1,7 @@
 """
 Main script for running the application.
 """
-
+#TODO: Finish main but I'll probably never actually do it
 from git_project.methods.import_students import ImportStudents
 
 path = "../lists/student_list.csv"
@@ -11,8 +11,8 @@ lista = ImportStudents.csv(path, ["Name", "Surname", "ID"])
 """
 for student in lista:
     print(student.get("Name"), student.get("Surname"), student.get("ID"))
-
 """
+
 lista2 = ImportStudents.txt(path2, ["Name", "Surname", "ID"])
 """
 for student in lista2:
@@ -24,7 +24,7 @@ for student in lista2:
 # for student in lista:
 #    print(student.get("Name"), student.get("Surname"), student.get("ID"))
 
+
 # ModifyStudents.add_student_by_overwriting(path, path2)
 # ModifyStudents.modify_student(path, path2, lista)
-
 # ModifyStudents.delete_student(path, path2, lista)
