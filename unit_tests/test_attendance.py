@@ -2,7 +2,6 @@
 Unit tests for the Attendance class.
 """
 
-import pytest
 from unittest.mock import patch
 from git_project.methods.attendance import Attendance
 
@@ -23,8 +22,8 @@ class TestAttendance:
             attendance.check_attendance_for_all(date, students)
 
         # Then
-        assert attendance.presence[date]["Grzegorz Boczek"] == True
-        assert attendance.presence[date]["Karol Kredka"] == False
+        assert attendance.presence[date]["Grzegorz Boczek"]
+        assert not attendance.presence[date]["Karol Kredka"]
 
     def test_download_attendance(self):
         # Given
@@ -54,7 +53,7 @@ class TestAttendance:
                 attendance.modify_attendance(date, student_name)
 
         # Then
-        assert attendance.presence[date][student_name] == True
+        assert attendance.presence[date][student_name]
         mocked_print.expected_output(
             f"Attendance for student {student_name} on {date} has been updated to present."
         )
