@@ -1,5 +1,5 @@
 """
-Unit tests for Import and Export functionalities.
+Unit tests for Import functionalities.
 """
 
 import os
