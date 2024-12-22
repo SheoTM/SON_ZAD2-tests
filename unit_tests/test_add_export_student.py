@@ -47,12 +47,11 @@ class TestModifyStudentsAndExport(unittest.TestCase):
         ExportStudents.csv(self.path_csv, students)
         ExportStudents.txt(self.path_txt, students)
 
-        # Then: Sprawdzenie rzeczywistej zawartości pliku CSV (ignorując białe znaki)
+        # Then
         with open(self.path_csv, "r") as file:
             csv_content = file.read().strip()
         self.assertEqual(csv_content, expected_csv_content)
 
-        # Sprawdzenie rzeczywistej zawartości pliku TXT (ignorując białe znaki)
         with open(self.path_txt, "r") as file:
             txt_content = file.read().strip()
         self.assertEqual(txt_content, expected_txt_content)
