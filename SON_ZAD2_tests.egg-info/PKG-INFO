@@ -67,4 +67,22 @@ Requires-Dist: wheel==0.45.0
 Requires-Dist: zipp==3.21.0
 
 # SON_ZAD2
+
+---
+
+## đź“ť Changelog
+
+### Changes in Version 1.1.2
+
+#### âś¨ New Features
+-  Nothing.
+
+## đźš€ Installation
+
+To install the latest version, run:
+```bash
+pip install SON_ZAD2-tests
+```
 ![IMG_6691](https://paczaizm.pl/content/wp-content/uploads/to-sie-zateguje-typowy-polak-nosacz-malpa-robotnik-budowlaniec-wykonczeniowiec.jpg)
+
+

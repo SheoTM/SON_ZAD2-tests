@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
-version = os.getenv("VERSION", "1.1.2") #Version
+version = os.getenv("VERSION", "1.1.3") #Version
 
 setup(
     name="SON_ZAD2-tests",

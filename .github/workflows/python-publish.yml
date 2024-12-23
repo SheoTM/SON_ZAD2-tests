@@ -16,8 +16,8 @@ jobs:
       id: get_version
       run: |
         # Remove 'v' prefix and '-test' suffix
-        TAG=${GITHUB_REF#refs/tags/v}
-        VERSION=${TAG%-test}
+        TAG=${GITHUB_REF#refs/tags/v}  
+        VERSION=${TAG%}
         echo "VERSION=$VERSION" >> $GITHUB_ENV
 
     - name: Set up Python
